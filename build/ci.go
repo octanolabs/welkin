@@ -54,21 +54,21 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/octanolabs/pristine-go/internal/build"
-	"github.com/octanolabs/pristine-go/params"
+	"github.com/octanolabs/welkin/internal/build"
+	"github.com/octanolabs/welkin/params"
 )
 
 var (
-	// Files that end up in the pristine*.zip archive.
-	pristineArchiveFiles = []string{
+	// Files that end up in the welkin*.zip archive.
+	welkinArchiveFiles = []string{
 		"LICENSE.md",
-		executablePath("pristine"),
+		executablePath("welkin"),
 	}
 
-	// Files that end up in the pristine-alltools*.zip archive.
+	// Files that end up in the welkin-alltools*.zip archive.
 	allToolsArchiveFiles = []string{
 		"LICENSE.md",
-		executablePath("pristine"),
+		executablePath("welkin"),
 	}
 )
 
@@ -120,7 +120,7 @@ func doInstall(cmdline []string) {
 
 		if minor < 12 {
 			log.Println("You have Go version", runtime.Version())
-			log.Println("pristine requires at least Go version 1.12 and cannot")
+			log.Println("welkin requires at least Go version 1.12 and cannot")
 			log.Println("be compiled with an earlier version. Please upgrade your Go installation.")
 			os.Exit(1)
 		}
@@ -297,11 +297,11 @@ func doArchive(cmdline []string) {
 		env = build.Env()
 
 		baseArchive = archiveBasename(*arch, params.ArchiveVersion(env.Commit))
-		pristine    = "pristine-" + baseArchive + ext
-		alltools    = "pristine-alltools-" + baseArchive + ext
+		welkin    = "welkin-" + baseArchive + ext
+		alltools    = "welkin-alltools-" + baseArchive + ext
 	)
 	maybeSkipArchive(env)
-	if err := build.WriteArchive(pristine, pristineArchiveFiles); err != nil {
+	if err := build.WriteArchive(welkin, welkinArchiveFiles); err != nil {
 		log.Fatal(err)
 	}
 	if err := build.WriteArchive(alltools, allToolsArchiveFiles); err != nil {
@@ -352,7 +352,7 @@ func makeWorkdir(wdflag string) string {
 	if wdflag != "" {
 		err = os.MkdirAll(wdflag, 0744)
 	} else {
-		wdflag, err = ioutil.TempDir("", "pristine-build-")
+		wdflag, err = ioutil.TempDir("", "welkin-build-")
 	}
 	if err != nil {
 		log.Fatal(err)

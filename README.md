@@ -1,5 +1,5 @@
-# pristine-go
-[![CircleCI](https://circleci.com/gh/octanolabs/pristine-go/tree/master.svg?style=shield)](https://circleci.com/gh/octanolabs/pristine-go/tree/master)
+# welkin
+[![CircleCI](https://circleci.com/gh/octanolabs/welkin/tree/master.svg?style=shield)](https://circleci.com/gh/octanolabs/welkin/tree/master)
 
 A Go open source repository in its original condition.
 

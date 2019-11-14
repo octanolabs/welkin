@@ -11,10 +11,10 @@ fi
 workspace="$PWD/build/_workspace"
 root="$PWD"
 wsorgdir="$workspace/src/github.com/octanolabs"
-if [ ! -L "$wsorgdir/pristine-go" ]; then
+if [ ! -L "$wsorgdir/welkin" ]; then
     mkdir -p "$wsorgdir"
     cd "$wsorgdir"
-    ln -s ../../../../../. pristine-go
+    ln -s ../../../../../. welkin
     cd "$root"
 fi
 
@@ -23,8 +23,8 @@ GOPATH="$workspace"
 export GOPATH
 
 # Run the command inside the workspace.
-cd "$wsorgdir/pristine-go"
-PWD="$wsorgdir/pristine-go"
+cd "$wsorgdir/welkin"
+PWD="$wsorgdir/welkin"
 
 # Launch the arguments with the configured environment.
 exec "$@"

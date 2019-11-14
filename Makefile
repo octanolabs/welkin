@@ -2,15 +2,15 @@
 # with Go source code. If you know what GOPATH is then you probably
 # don't need to bother with make.
 
-.PHONY: pristine all test clean
+.PHONY: welkin all test clean
 
 GOBIN = $(shell pwd)/build/bin
 GO ?= latest
 
-pristine:
-	build/env.sh go run build/ci.go install ./cmd/pristine
+welkin:
+	build/env.sh go run build/ci.go install ./cmd/welkin
 	@echo "Done building."
-	@echo "Run \"$(GOBIN)/pristine\" to launch your pristine app."
+	@echo "Run \"$(GOBIN)/welkin\" to launch your welkin app."
 
 all:
 	build/env.sh go run build/ci.go install
