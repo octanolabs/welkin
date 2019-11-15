@@ -63,14 +63,12 @@ var (
 	welkinArchiveFiles = []string{
 		"LICENSE.md",
 		executablePath("welkin"),
-		executablePath("welkin-cli"),
 	}
 
 	// Files that end up in the welkin-alltools*.zip archive.
 	allToolsArchiveFiles = []string{
 		"LICENSE.md",
 		executablePath("welkin"),
-		executablePath("welkin-cli"),
 	}
 )
 

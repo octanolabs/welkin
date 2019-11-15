@@ -2,7 +2,7 @@
 # with Go source code. If you know what GOPATH is then you probably
 # don't need to bother with make.
 
-.PHONY: welkin welkin-cli all test clean
+.PHONY: welkin all test clean
 
 GOBIN = $(shell pwd)/build/bin
 GO ?= latest
@@ -11,11 +11,6 @@ welkin:
 	build/env.sh go run build/ci.go install ./cmd/welkin
 	@echo "Done building."
 	@echo "Run \"$(GOBIN)/welkin\" to launch your welkin app."
-
-welkin-cli:
-	build/env.sh go run build/ci.go install ./cmd/welkin-cli
-	@echo "Done building."
-	@echo "Run \"$(GOBIN)/welkin-cli\" to launch the welkin command line interface."
 
 all:
 	build/env.sh go run build/ci.go install
