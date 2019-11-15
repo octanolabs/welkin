@@ -63,12 +63,14 @@ var (
 	welkinArchiveFiles = []string{
 		"LICENSE.md",
 		executablePath("welkin"),
+		executablePath("welkin-cli"),
 	}
 
 	// Files that end up in the welkin-alltools*.zip archive.
 	allToolsArchiveFiles = []string{
 		"LICENSE.md",
 		executablePath("welkin"),
+		executablePath("welkin-cli"),
 	}
 )
 
@@ -297,7 +299,7 @@ func doArchive(cmdline []string) {
 		env = build.Env()
 
 		baseArchive = archiveBasename(*arch, params.ArchiveVersion(env.Commit))
-		welkin    = "welkin-" + baseArchive + ext
+		welkin      = "welkin-" + baseArchive + ext
 		alltools    = "welkin-alltools-" + baseArchive + ext
 	)
 	maybeSkipArchive(env)
