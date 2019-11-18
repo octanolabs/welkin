@@ -64,5 +64,6 @@ Creates a new master wallet and prints the recovery phrase.
 func createNewWallet(c *cli.Context) error {
 	newMnemonic := GenerateMnemonic()
 	fmt.Println(newMnemonic)
+
 	return nil
 }
