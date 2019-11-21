@@ -1,5 +1,7 @@
 package store
 
+// State ...
+// Main instance state
 type State struct {
 	Address  string `bson:"address" json:"address"`
 	Mnemonic string `bson:"mnemonic" json:"mnemonic"`
