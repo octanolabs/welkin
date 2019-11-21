@@ -2,8 +2,10 @@ package store
 
 import (
 	"context"
+	"log"
 	"time"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -47,9 +49,24 @@ func getCollection(name string) *mongo.Collection {
 	return collection
 }
 
-// UpdateState ...
+// GetState ...
+// Returns app state from db
+func GetState() State {
+	var state State
+	filter := bson.D{}
+	collection := getCollection("state")
+	ctx, cancel := context.WithTimeout(context.Background(), tenSeconds)
+	err := collection.FindOne(ctx, filter).Decode(&state)
+	if err != nil {
+		log.Fatal(err)
+	}
+	cancel()
+	return state
+}
+
+// SetState ...
 // Update main state
-func UpdateState(newState *State) {
+func SetState(newState State) {
 	state := getCollection("state")
 	ctx, cancel := context.WithTimeout(context.Background(), twoSeconds)
 	_, _ = state.InsertOne(ctx, newState)
