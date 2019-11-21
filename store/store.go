@@ -55,7 +55,7 @@ func GetState() State {
 	var state State
 	filter := bson.D{}
 	collection := getCollection("state")
-	ctx, cancel := context.WithTimeout(context.Background(), tenSeconds)
+	ctx, cancel := context.WithTimeout(context.Background(), twoSeconds)
 	err := collection.FindOne(ctx, filter).Decode(&state)
 	if err != nil {
 		log.Fatal(err)
@@ -69,7 +69,12 @@ func GetState() State {
 func SetState(newState State) {
 	state := getCollection("state")
 	ctx, cancel := context.WithTimeout(context.Background(), twoSeconds)
-	_, _ = state.InsertOne(ctx, newState)
+	filter := bson.D{}
+	opts := options.FindOneAndUpdate().SetUpsert(true)
+	err := state.FindOneAndUpdate(ctx, filter, newState, opts)
+	if err != nil {
+		log.Fatal(err)
+	}
 	cancel()
 	return
 }
